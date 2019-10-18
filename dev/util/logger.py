@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-i
 
-import sys
 import json
 import logging
 import datetime
@@ -18,17 +17,18 @@ class Logger:
 
             Logger.__monostate = self.__dict__
             self.logger = logging.getLogger(name)
-            fileHandler = logging.FileHandler(name + '.log')
+            file_handler = logging.FileHandler(name + '.log')
             formatter = logging.Formatter(log_format)
-            fileHandler.setFormatter(formatter)
-            self.logger.addHandler(fileHandler)
+            file_handler.setFormatter(formatter)
+            self.logger.addHandler(file_handler)
 
             self.logger.setLevel(logging.DEBUG)
 
         else:
             self.__dict__ = Logger.__monostate
 
-    def __default(self, o):
+    @staticmethod
+    def __default(o):
         if type(o) is datetime.date or type(o) is datetime.datetime:
             return o.isoformat()
 

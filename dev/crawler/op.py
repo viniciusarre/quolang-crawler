@@ -12,7 +12,7 @@ def scrap(url):
         return soup
     else:
         d = DAO()
-        d.writeLog('crawlerError',  str(r.status_code) + ' ' + url)
+        d.write_log('crawlerError',  str(r.status_code) + ' ' + url)
         Logger().error(str(r.status_code) + ' ' + url)
         print('registered connection error!',
               str(r.status_code) + ' ' + url)
