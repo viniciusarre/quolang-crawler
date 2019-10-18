@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from dev.util.logger import Logger
 import sys
 import time
 from datetime import date
@@ -13,8 +14,8 @@ class DAO:
             client = MongoClient("mongodb://localhost:27017")
             self.db = client.quotelang
         except Exception as e:
-            print('Connection error '+e)
-            
+            print('Connection error ' + e)
+
     def save(self, dic):
         try:
             self.db.quote.insert(dic)
@@ -22,6 +23,8 @@ class DAO:
                   dic['language'] + ' added successfully!')
         except Exception as e:
             self.writeLog('insertionError', e)
+            Logger().error(str(e))
+
             sys.exit(1)
 
     def getData(self):
@@ -33,6 +36,7 @@ class DAO:
 
         except Exception as e:
             self.writeLog('fetchinDataError', e)
+            Logger().error(str(e))
 
     def checkAuthor(self, name):
         dt = []
@@ -46,7 +50,8 @@ class DAO:
         if dt:
             dt['logs'].append(log)
             self.db.log.update({'_id': dt['_id']},
-                               {"$set": {'data': str(date.fromtimestamp(time.time())), 'type': logType, 'logs': dt['logs']}})
+                               {"$set": {'data': str(date.fromtimestamp(time.time())), 'type': logType,
+                                         'logs': dt['logs']}})
         else:
             id = random.randint(1000, 50000)
             dt = self.getLog()
@@ -71,3 +76,4 @@ class DAO:
                 return []
         except Exception as e:
             self.writeLog('error', e)
+            Logger().error(str(e))

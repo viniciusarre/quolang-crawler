@@ -1,6 +1,7 @@
 from dev.util.functions import format, filter
 from dev.model.DAO import DAO
 from dev.crawler.op import scrap
+from dev.util.logger import Logger
 import sys
 
 
@@ -29,6 +30,7 @@ class French():
         if len(self.d.checkAuthor(author)) > 0:
             status = 'All quotes from ' + author + ' in '+language+'  are up to date!'
             self.d.writeLog('status', status)
+            Logger().info(status)
             print("Log registered!")
             return False
         else:
