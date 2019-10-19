@@ -12,7 +12,7 @@ class French():
     def __init__(self):
         self.d = DAO()
 
-    def Fetch_Fr(self, soup, url_name, save_to_db=True, data_in=[]):
+    def __fetch_fr(self, soup, url_name, save_to_db=True, data_in=[]):
         data = data_in
         if save_to_db:
             data = self.d.getData()
