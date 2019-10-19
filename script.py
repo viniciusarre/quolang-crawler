@@ -4,7 +4,7 @@ from tornado.options import define, options
 from dev.api.Fetch import Fetch
 
 m = Main()
-m.selectLanguage()
+m.select_language()
 
 
 define("port", default=6070, help="run on the given port", type=int)
