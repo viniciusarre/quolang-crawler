@@ -31,7 +31,7 @@ class TestCrawler(unittest.TestCase):
         soup = BeautifulSoup(html, "html.parser")
 
         # Run the function
-        test_data = testfr.fetch_data(data_init, soup, url_name)
+        test_data = testfr.Fetch_Fr(soup, url_name, save_to_db=False, data_in=data_init)
 
         # Assert
         self.assertEqual(test_data["language"], language_expect)

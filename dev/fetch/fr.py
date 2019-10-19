@@ -12,7 +12,10 @@ class French():
     def __init__(self):
         self.d = DAO()
 
-    def fetch_data(self, data, soup, url_name):
+    def Fetch_Fr(self, soup, url_name, save_to_db=True, data_in=[]):
+        data = data_in
+        if save_to_db:
+            data = self.d.getData()
         id = data[-1]['_id'] + 1 if len(data) > 0 else 1
         quotes= [filter(i.text)
                  for i in soup.findAll('div', {'class': 'citation'})]
@@ -22,12 +25,10 @@ class French():
         aux = [{'quotes': quotes, 'source': source}]
         flag = "🇫🇷"
         data = format('fr', author, aux, flag,  url_name, id)
-        return data
+        if save_to_db:
+            self.d.save(data)
 
-    def Fetch_Fr(self, soup, url_name):
-        data = self.d.getData()
-        data = self.fetch_data(data, soup, url_name)
-        self.d.save(data)
+        return data
 
     def urlSetUp(self, author, language):
         if len(self.d.checkAuthor(author)) > 0:
