@@ -1,8 +1,7 @@
 from pymongo import MongoClient
 from dev.util.logger import Logger
 import sys
-import time
-from datetime import date
+import datetime
 import random
 
 
@@ -50,7 +49,7 @@ class DAO:
         if dt:
             dt['logs'].append(log)
             self.db.log.update({'_id': dt['_id']},
-                               {"$set": {'data': str(date.fromtimestamp(time.time())), 'type': log_type,
+                               {"$set": {'date': datetime.datetime.today(), 'type': log_type,
                                          'logs': dt['logs']}})
         else:
             id = random.randint(1000, 50000)
@@ -58,7 +57,7 @@ class DAO:
             if dt:
                 id = int(dt[-1]['_id'])
             self.db.log.insert(
-                {'_id': id + 1000, 'data': str(date.fromtimestamp(time.time())), 'type': log_type, 'logs': [log]})
+                {'_id': id + 1000, 'date': datetime.datetime.today(), 'type': log_type, 'logs': [log]})
 
     def __find_log(self, type):
         r = None
