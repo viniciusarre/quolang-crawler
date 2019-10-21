@@ -13,10 +13,10 @@ class French:
     def __init__(self):
         self.d = DAO()
 
-    def __fetch_fr(self, soup, url_name, save_to_db=True, data_in=[]):
+    def __fetch_fr(self, soup, url_name):
         data = data_in
         if save_to_db:
-            data = self.d.getData()
+            data = self.d.get_data()
         id = data[-1]['_id'] + 1 if len(data) > 0 else 1
         quotes = [filter(i.text) for i in soup.findAll('div', {'class': 'citation'})]
         source = [filter(i.text) for i in soup.findAll('div', {'class': 'ref'})]
