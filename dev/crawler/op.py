@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from dev.model.DAO import DAO
+from dev.util.logger import Logger
 import sys
 
 
@@ -11,7 +12,8 @@ def scrap(url):
         return soup
     else:
         d = DAO()
-        d.writeLog('crawlerError',  str(r.status_code) + ' ' + url)
+        d.write_log('crawlerError',  str(r.status_code) + ' ' + url)
+        Logger().error(str(r.status_code) + ' ' + url)
         print('registered connection error!',
               str(r.status_code) + ' ' + url)
         sys.exit(1)
