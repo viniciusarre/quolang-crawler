@@ -12,7 +12,7 @@ class Fetch(tornado.web.RequestHandler):
                 f = French()
                 print('***** looking for ******* ' + author)
                 res = f.url_set_up(author, "fr")
-                if res:
+                if res["status"]:
                     self.write({"success": True})
                 else:
                     self.write({"success": False})
@@ -29,8 +29,8 @@ class Fetch(tornado.web.RequestHandler):
                 print('***** looking for author ******* ' + author)
                 res = f.url_set_up(author, "fr")
                 print("RES >>")
-                print(res)
-                if res:
+                print(res["status"])
+                if res["status"]:
                     self.write({"success": True})
                 else:
                     self.write({"success": False})

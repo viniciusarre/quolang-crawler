@@ -30,3 +30,10 @@ The server tries to connect to a MongoDB instance at port 27017 on localhost. Yo
 
 This runs a new container with the last version of the `mongo` image and forwards the local port 27017 to the port 27017 in the container instance with name `mongodb`.
 
+
+## Running Test
+
+Using Python 3, to run test:
+
+> `python -m unittest tests/Test_crawler.py`
+
