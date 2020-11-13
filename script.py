@@ -1,7 +1,7 @@
 from main import Main
 import tornado.web
 from tornado.options import define, options
-from dev.api.Fetch import Fetch
+from api.Fetch import Fetch
 
 m = Main()
 m.select_language()

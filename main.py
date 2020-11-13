@@ -1,5 +1,8 @@
-from dev.fetch.fr import French
-from dev.util.authors import fr_authors, general_authors
+import fetch.fr as fr
+import util.authors as authors
+
+fr_authors, general_authors = authors.fr_authors, authors.general_authors
+French = fr.French
 
 
 class Main:
@@ -12,10 +15,7 @@ class Main:
             f = French()
             print('***** going through authors in French *******')
             for i in range(len(fr_authors)):
-                f.url_set_up(fr_authors[i],self.lang[self.ind])
+                f.url_set_up(fr_authors[i], self.lang[self.ind])
             print('***** going through general_authors in French ****** ')
             for j in range(len(general_authors)):
-                f.url_set_up(general_authors[j],self.lang[self.ind])
-
-
-
+                f.url_set_up(general_authors[j], self.lang[self.ind])

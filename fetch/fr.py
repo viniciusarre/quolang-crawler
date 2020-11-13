@@ -1,11 +1,10 @@
-from dev.util.functions import format, filter
-from dev.model.DAO import DAO
-from dev.crawler.op import scrap
-from dev.util.logger import Logger
+from util.logger import Logger
+from crawler.op import scrap
+from model.DAO import DAO
+from util.functions import format, filter
 
 
 class French:
-
     d = None
     data = []
     url = 'https://fr.wikiquote.org/wiki/'
@@ -18,8 +17,10 @@ class French:
         if save_to_db:
             data = self.d.get_data()
         id = data[-1]['_id'] + 1 if len(data) > 0 else 1
-        quotes = [filter(i.text) for i in soup.findAll('div', {'class': 'citation'})]
-        source = [filter(i.text) for i in soup.findAll('div', {'class': 'ref'})]
+        quotes = [filter(i.text)
+                  for i in soup.findAll('div', {'class': 'citation'})]
+        source = [filter(i.text)
+                  for i in soup.findAll('div', {'class': 'ref'})]
         author = soup.find('h1', {'id': 'firstHeading'}).text
         aux = [{'quotes': quotes, 'source': source}]
         flag = "🇫🇷"
@@ -30,7 +31,7 @@ class French:
         return data
 
     def url_set_up(self, author, language, save_to_db=True,
-                    data_in=[], author_in=[]):
+                   data_in=[], author_in=[]):
         author_data = author_in
         if save_to_db:
             author_data = self.d.check_author(author)
@@ -50,7 +51,7 @@ class French:
             addr = self.url + author
             print(addr)
             data = self.__fetch_fr(scrap(addr), author,
-                                    save_to_db=save_to_db, data_in=data_in)
+                                   save_to_db=save_to_db, data_in=data_in)
             return {
                 "status": True,
                 "result": data

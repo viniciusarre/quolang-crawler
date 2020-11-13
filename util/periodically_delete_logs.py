@@ -1,5 +1,5 @@
-from dev.model.DAO import DAO
 import datetime
+from model.DAO import DAO
 
 
 def periodically_delete_logs():
@@ -10,7 +10,6 @@ def periodically_delete_logs():
 
     for document in cursor.find({'date': {'$lt': week_ago}}):
         dao.db.log.delete_one(document)
-    return
 
 
 periodically_delete_logs()

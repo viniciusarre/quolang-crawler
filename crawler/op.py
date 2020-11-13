@@ -1,8 +1,9 @@
 import requests
-from bs4 import BeautifulSoup
-from dev.model.DAO import DAO
-from dev.util.logger import Logger
 import sys
+from bs4 import BeautifulSoup
+
+from model.DAO import DAO
+from util.logger import Logger
 
 
 def scrap(url):

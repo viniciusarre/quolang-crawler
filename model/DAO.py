@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from dev.util.logger import Logger
+from util.logger import Logger
 import sys
 import datetime
 import random

@@ -1,5 +1,5 @@
 import tornado.web
-from dev.fetch.fr import French
+from fetch.fr import French
 
 
 class Fetch(tornado.web.RequestHandler):
@@ -7,7 +7,7 @@ class Fetch(tornado.web.RequestHandler):
     def get(self):
         try:
             author = self.get_query_argument("author", strip=False)
-            if author is not None: 
+            if author is not None:
                 author = author.replace(" ", "_")
                 f = French()
                 print('***** looking for ******* ' + author)
@@ -23,7 +23,7 @@ class Fetch(tornado.web.RequestHandler):
         print("GOT POST ")
         try:
             author = self.get_body_argument("author", strip=False)
-            if author is not None: 
+            if author is not None:
                 author = author.replace(" ", "_")
                 f = French()
                 print('***** looking for author ******* ' + author)
