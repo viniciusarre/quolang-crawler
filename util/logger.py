@@ -15,7 +15,6 @@ class Logger:
             log_format = ('{ "log_level": %(levelno)s, '
                           '"message": %(message)s }')
 
-            Logger.__monostate = self.__dict__
             self.logger = logging.getLogger(name)
             file_handler = logging.FileHandler(name + '.log')
             formatter = logging.Formatter(log_format)
