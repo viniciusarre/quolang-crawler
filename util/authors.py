@@ -1,7 +1,7 @@
 
 
-general_authors = ('Steve_Jobs','Bill_Gates','Edward_Snowden','Mark_Zuckerberg')
-fr_authors  = (
+sample_general_authors = ('Steve_Jobs','Bill_Gates','Edward_Snowden','Mark_Zuckerberg')
+sample_fr_authors  = (
     'Anacharsis',
     'Diogène_de_Sinope',
     'Socrate',

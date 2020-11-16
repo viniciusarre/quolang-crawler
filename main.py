@@ -1,9 +1,5 @@
-import fetch.fr as fr
-import util.authors as authors
-
-fr_authors, general_authors = authors.fr_authors, authors.general_authors
-French = fr.French
-
+from fetch.fr import French
+from util.authors import sample_fr_authors, sample_general_authors
 
 class Main:
     lang = ('fr', 'it', 'pt', 'es', 'en')
@@ -14,8 +10,8 @@ class Main:
         if self.lang[self.ind] == 'fr':
             f = French()
             print('***** going through authors in French *******')
-            for i in range(len(fr_authors)):
-                f.url_set_up(fr_authors[i], self.lang[self.ind])
+            for i in range(len(sample_fr_authors)):
+                f.url_set_up(sample_fr_authors[i], self.lang[self.ind])
             print('***** going through general_authors in French ****** ')
-            for j in range(len(general_authors)):
-                f.url_set_up(general_authors[j], self.lang[self.ind])
+            for j in range(len(sample_general_authors)):
+                f.url_set_up(sample_general_authors[j], self.lang[self.ind])
