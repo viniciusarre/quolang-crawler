@@ -28,7 +28,7 @@ Then run the project with
 
 The server tries to connect to a MongoDB instance at port 27017 on localhost. You can do this easily using docker with the following command:
 
-`docker run -it -p27017:27017 --name mongodb -d mongo`
+`docker run -it -p 27017:27017 --name mongodb -d mongo`
 
 This runs a new container with the last version of the `mongo` image and forwards the local port 27017 to the port 27017 in the container instance with name `mongodb`.
 
