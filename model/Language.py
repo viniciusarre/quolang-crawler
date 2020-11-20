@@ -1,4 +1,12 @@
-class Language:
+from mongoengine import Document, StringField, ObjectIdField, ReferenceField
+
+
+class Language(Document):
+
+    _id = ObjectIdField()
+    code = StringField(unique=True, required=True)
+    name = StringField(required=True)
+
     def __init__(self, code, name):
         self.code = code
         self.name = name

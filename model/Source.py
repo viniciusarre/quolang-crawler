@@ -1,4 +1,12 @@
-class Source:
+from mongoengine import Document, StringField, ObjectIdField, ReferenceField
+from . import Language
+
+
+class Source(Document):
+    _id = ObjectIdField()
+    source_text = StringField(required=True)
+    language_id = ReferenceField(Language)
+
     def __init__(self, source_text, language_id):
         self.source_text = source_text
         self.language_id = language_id
