@@ -1,5 +1,8 @@
 import tornado.web
 from fetch.fr import French
+from util.logger import Logger
+
+logger = Logger()
 
 
 class Fetch(tornado.web.RequestHandler):
@@ -10,7 +13,7 @@ class Fetch(tornado.web.RequestHandler):
             if author is not None:
                 author = author.replace(" ", "_")
                 f = French()
-                print('***** looking for ******* ' + author)
+                logger.info('***** looking for ******* ' + author)
                 res = f.url_set_up(author, "fr")
                 if res["status"]:
                     self.write({"success": True})
@@ -20,16 +23,14 @@ class Fetch(tornado.web.RequestHandler):
             self.write({"success": False})
 
     def post(self):
-        print("GOT POST ")
         try:
             author = self.get_body_argument("author", strip=False)
             if author is not None:
                 author = author.replace(" ", "_")
                 f = French()
-                print('***** looking for author ******* ' + author)
+                logger.info('***** looking for author ******* ' + author)
                 res = f.url_set_up(author, "fr")
-                print("RES >>")
-                print(res["status"])
+
                 if res["status"]:
                     self.write({"success": True})
                 else:
@@ -38,7 +39,7 @@ class Fetch(tornado.web.RequestHandler):
             self.write({"success": False})
 
     def set_default_headers(self):
-        print("setting headers!!!")
+        logger.info("setting headers!!!")
         self.set_header("Access-Control-Allow-Origin", "*")
         self.set_header("Access-Control-Allow-Headers", "x-requested-with")
         self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')

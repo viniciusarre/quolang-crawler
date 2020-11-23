@@ -4,6 +4,8 @@ import sys
 import datetime
 import random
 
+logger = Logger()
+
 
 class DAO:
     db = None
@@ -13,16 +15,16 @@ class DAO:
             client = MongoClient("mongodb://localhost:27017")
             self.db = client.quotelang
         except Exception as e:
-            print('Connection error ' + e)
+            logger.info('Connection error ' + e)
 
     def save(self, dic):
         try:
             self.db.quote.insert(dic)
-            print('data from ' + dic['author'] + ' in ' +
-                  dic['language'] + ' added successfully!')
+            logger.info('data from ' + dic['author'] + ' in ' +
+                        dic['language'] + ' added successfully!')
         except Exception as e:
             self.write_log('insertionError', e)
-            Logger().error(str(e))
+            logger.error(str(e))
 
             sys.exit(1)
 
@@ -35,7 +37,7 @@ class DAO:
 
         except Exception as e:
             self.write_log('fetchinDataError', e)
-            Logger().error(str(e))
+            logger.error(str(e))
 
     def check_author(self, name):
         dt = []
@@ -44,7 +46,7 @@ class DAO:
         return dt
 
     def write_log(self, log_type, log):
-        print('logging... ')
+        logger.info('logging... ')
         dt = self.__find_log(log_type)
         if dt:
             dt['logs'].append(log)
@@ -75,4 +77,4 @@ class DAO:
                 return []
         except Exception as e:
             self.write_log('error', e)
-            Logger().error(str(e))
+            logger.error(str(e))

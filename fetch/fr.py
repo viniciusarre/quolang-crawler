@@ -2,6 +2,9 @@ from util.logger import Logger
 from crawler.op import scrap
 from model.DAO import DAO
 from util.functions import format, filter
+from util.logger import Logger
+
+logger = Logger()
 
 
 class French:
@@ -41,15 +44,15 @@ class French:
             if save_to_db:
                 self.d.write_log('status', status)
             Logger().info(status)
-            print("Log registered!")
+            logger.info("Log registered!")
             return {
                 "status": False,
                 "result": {}
             }
         else:
-            print('****** formating url **** ')
+            logger.info('****** formating url **** ')
             addr = self.url + author
-            print(addr)
+            logger.info(addr)
             data = self.__fetch_fr(scrap(addr), author,
                                    save_to_db=save_to_db, data_in=data_in)
             return {

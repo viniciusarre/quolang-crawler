@@ -15,6 +15,6 @@ def scrap(url):
         d = DAO()
         d.write_log('crawlerError',  str(r.status_code) + ' ' + url)
         Logger().error(str(r.status_code) + ' ' + url)
-        print('registered connection error!',
-              str(r.status_code) + ' ' + url)
+        logger.info('registered connection error!',
+                    str(r.status_code) + ' ' + url)
         sys.exit(1)
