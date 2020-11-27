@@ -21,7 +21,13 @@ Creage a venv folder by running
 
 > `virtualenv venv`
 
-Once it's done, navigate into it and then install the dependencies in requirements.txt by running
+
+Once it's done, activate the environment: 
+
+> `source venv/bin/activate`
+
+
+Now install the dependencies in requirements.txt by running
 
  > `pip install -r requirements.txt`
 
@@ -32,7 +38,7 @@ Then run the project with
 
 ## Running MongoDB
 
-The server tries to connect to a MongoDB instance at port 27017 on localhost. You can do this easily using docker with the following command:
+The script tries to connect to a MongoDB instance at port 27017 on localhost. You can do this easily using docker with the following command:
 
 `docker run -it -p 27017:27017 --name mongodb -d mongo`
 
