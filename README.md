@@ -15,7 +15,13 @@ This was my first project using Python, I am sure it can be improved in so many 
 Running the project
 ------
 
-Using Python 3, install the dependencies in requirements.txt by running
+Using Python 3:
+
+Creage a venv folder by running 
+
+> `virtualenv venv`
+
+Once it's done, navigate into it and then install the dependencies in requirements.txt by running
 
  > `pip install -r requirements.txt`
 
